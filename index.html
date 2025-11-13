@@ -1,46 +1,430 @@
----
-layout: page
-description: "「离开世界之前 一切都是过程」"
----
-
-{% for post in paginator.posts %}
-<div class="post-preview">
-    <a href="{{ post.url | prepend: site.baseurl }}">
-        <h2 class="post-title">
-            {{ post.title }}
-        </h2>
-        {% if post.subtitle %}
-        <h3 class="post-subtitle">
-            {{ post.subtitle }}
-        </h3>
-        {% endif %}
-        <div class="post-content-preview">
-            {% if post.lang == 'en' %}
-                {{ post.content | strip_html | truncate:300 }}
-            {% else %}
-                {{ post.content | strip_html | truncate:200 }}
-            {% endif %}
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>麦脉千年：江苏麦作文化的传承与新生</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="logo">麦脉千年</div>
+            <ul class="nav-menu">
+                <li><a href="exhibition.html" class="nav-link">展览介绍</a></li>
+                <li><a href="knowledge.html" class="nav-link">知识科普</a></li>
+                <li><a href="#booking" class="nav-link">展览预约</a></li>
+                <li><a href="#shop" class="nav-link">文创商城</a></li>
+            </ul>
         </div>
-    </a>
-    <p class="post-meta">
-        Posted by {% if post.author %}{{ post.author }}{% else %}{{ site.title }}{% endif %} on {{ post.date | date: "%B %-d, %Y" }}
-    </p>
-</div>
-<hr>
-{% endfor %}
+    </nav>
 
-<!-- Pager -->
-{% if paginator.total_pages > 1 %}
-<ul class="pager">
-    {% if paginator.previous_page %}
-    <li class="previous">
-        <a href="{{ paginator.previous_page_path | prepend: site.baseurl | replace: '//', '/' }}">&larr; Newer Posts</a>
-    </li>
-    {% endif %}
-    {% if paginator.next_page %}
-    <li class="next">
-        <a href="{{ paginator.next_page_path | prepend: site.baseurl | replace: '//', '/' }}">Older Posts &rarr;</a>
-    </li>
-    {% endif %}
-</ul>
-{% endif %}
+    <!-- 首页横幅 -->
+    <section class="hero">
+        <!-- 轮播图 -->
+        <div class="carousel-container">
+            <div class="carousel-slides">
+                <div class="carousel-slide active" style="background-image: url('images/hero/首页.jpg');">
+                    <div class="slide-overlay"></div>
+                </div>
+                <div class="carousel-slide" style="background-image: url('images/hero/首页2.png');">
+                    <div class="slide-overlay"></div>
+                </div>
+                <div class="carousel-slide" style="background-image: url('images/hero/首页3.png');">
+                    <div class="slide-overlay"></div>
+                </div>
+                <div class="carousel-slide" style="background-image: url('images/hero/首页.jpg');">
+                    <div class="slide-overlay"></div>
+                </div>
+            </div>
+            <div class="carousel-controls">
+                <button class="carousel-btn prev" onclick="changeSlide(-1)">‹</button>
+                <button class="carousel-btn next" onclick="changeSlide(1)">›</button>
+            </div>
+            <div class="carousel-indicators">
+                <span class="indicator active" onclick="currentSlide(1)"></span>
+                <span class="indicator" onclick="currentSlide(2)"></span>
+                <span class="indicator" onclick="currentSlide(3)"></span>
+                <span class="indicator" onclick="currentSlide(4)"></span>
+            </div>
+        </div>
+        
+        <div class="hero-content">
+            <div class="hero-badge">千年传承 · 文化新生</div>
+            <h1 class="hero-title">
+                <span class="title-line">麦脉</span>
+                <span class="title-line">千年</span>
+            </h1>
+            <p class="hero-subtitle">江苏麦作文化的传承与新生</p>
+            <div class="hero-description">
+                <p>从西周至东周的历史遗存，到现代育种科技的创新突破</p>
+                <p>从传统农事技艺，到当代民俗文化的传承发展</p>
+            </div>
+            <div class="hero-buttons">
+                <a href="exhibition.html" class="btn btn-primary">
+                    <span>开始探索</span>
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                        <path d="M7.5 15L12.5 10L7.5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                </a>
+                <a href="#booking" class="btn btn-secondary">
+                    <span>立即预约</span>
+                </a>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <span>向下滚动</span>
+            <div class="arrow"></div>
+        </div>
+        <div class="hero-decoration">
+            <div class="decoration-circle circle-1"></div>
+            <div class="decoration-circle circle-2"></div>
+            <div class="decoration-circle circle-3"></div>
+        </div>
+    </section>
+
+    <!-- 第一板块：展览介绍 -->
+    <section id="exhibition" class="section exhibition-section">
+        <!-- 背景图片 -->
+        <div class="section-bg-image" style="background-image: url('images/exhibition/收割小麦.png');"></div>
+        <div class="container">
+            <h2 class="section-title">展览介绍</h2>
+            <p class="section-intro">本次展览分为三个展区，全面展现江苏麦作文化的历史脉络、育种智慧与民俗传承</p>
+            
+            <!-- 展区一 -->
+            <div class="exhibition-zone" id="zone1">
+                <div class="zone-header">
+                    <span class="zone-number">01</span>
+                    <h3 class="zone-title">溯源·麦入江淮</h3>
+                    <p class="zone-subtitle">耕作历史与技术演进</p>
+                </div>
+                <div class="zone-content">
+                    <div class="zone-image-wrapper">
+                        <div class="zone-image scroll-reveal slide-down">
+                            <img src="images/exhibition/第一展区 盐城大同铺遗址.png" alt="历史脉络" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                            <div class="image-placeholder" style="display:none;">
+                                <span>历史脉络图</span>
+                            </div>
+                            <div class="image-overlay">
+                                <div class="overlay-content">
+                                    <h4>历史脉络</h4>
+                                    <p>西周至东周时期的麦作遗存</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="zone-image-secondary scroll-reveal fade-in">
+                            <img src="images/exhibition/农具陈列.png" alt="农具" onerror="this.style.display='none';">
+                        </div>
+                    </div>
+                    <div class="zone-text scroll-reveal slide-left">
+                        <div class="text-block">
+                            <h4>历史脉络</h4>
+                            <p>以盐城大同铺遗址的麦作遗存为起点，展示西周至东周时期麦类传入江苏的早期证据，呈现其与本地稻作农业融合形成的稻—旱混作模式。重点呈现北宋引入占城稻后稻麦复种制的兴起，以及南宋至明清时期该制度的大范围推广与完善。</p>
+                        </div>
+                        <div class="text-block">
+                            <h4>传统技艺</h4>
+                            <p>通过农事工具实物（镰刀、石磨、木犁等）、步骤图谱及互动装置，还原传统麦作流程——从依《田家五行》记载看天选时，到遵循《便民图纂》中的耕种技法，再到人工收割、脱粒、扬场的全套工序。对比展示不同朝代麦作技术的迭代升级。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 展区二 -->
+            <div class="exhibition-zone" id="zone2">
+                <div class="zone-header">
+                    <span class="zone-number">02</span>
+                    <h3 class="zone-title">育种·粒藏春秋</h3>
+                    <p class="zone-subtitle">种质培育与文献记载</p>
+                </div>
+                <div class="zone-content reverse">
+                    <div class="zone-text scroll-reveal slide-right">
+                        <div class="text-block">
+                            <h4>品种演进</h4>
+                            <p>以《江苏省稻麦品种志》为核心文献支撑，通过古籍抄本、现代专著、品种标本的递进式陈列，梳理江苏麦类品种的演变轨迹。从古代地方农家品种，到近现代选育的改良品种，再到宁麦系列、扬麦系列等知名品种的培育历程，展现种质资源的传承与创新。</p>
+                        </div>
+                        <div class="text-block">
+                            <h4>育种智慧</h4>
+                            <p>设置"农书里的育种密码"板块，摘录《便民图纂》《稻品》等古籍中关于麦类选种、留种的记载，搭配现代育种实验室场景复原，对比传统经验选育与分子育种技术的异同，凸显江苏麦作育种的科技传承脉络。</p>
+                        </div>
+                    </div>
+                    <div class="zone-image-wrapper">
+                        <div class="zone-image scroll-reveal slide-down">
+                            <img src="images/exhibition/江苏省稻麦品种志.png" alt="品种标本" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                            <div class="image-placeholder" style="display:none;">
+                                <span>品种标本图</span>
+                            </div>
+                            <div class="image-overlay">
+                                <div class="overlay-content">
+                                    <h4>品种演进</h4>
+                                    <p>从古代农家品种到现代改良品种</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="zone-image-secondary scroll-reveal fade-in">
+                            <img src="images/exhibition/小麦种子照片.png" alt="麦穗" onerror="this.style.display='none';">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 展区三 -->
+            <div class="exhibition-zone" id="zone3">
+                <div class="zone-header">
+                    <span class="zone-number">03</span>
+                    <h3 class="zone-title">润俗·麦香风物</h3>
+                    <p class="zone-subtitle">民俗文化与生活印记</p>
+                </div>
+                <div class="zone-content">
+                    <div class="zone-image-wrapper">
+                        <div class="zone-image scroll-reveal slide-down">
+                            <img src="images/exhibition/第三展区麦芽塌饼.png" alt="民俗文化" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                            <div class="image-placeholder" style="display:none;">
+                                <span>民俗文化图</span>
+                            </div>
+                            <div class="image-overlay">
+                                <div class="overlay-content">
+                                    <h4>民俗文化</h4>
+                                    <p>传统食俗与现代传承</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="zone-image-secondary scroll-reveal fade-in">
+                            <img src="images/exhibition/无锡鸿山麦饼.jpg" alt="面食" onerror="this.style.display='none';">
+                        </div>
+                    </div>
+                    <div class="zone-text scroll-reveal slide-left">
+                        <div class="text-block">
+                            <h4>时令食俗</h4>
+                            <p>聚焦麦类衍生的饮食文化，打造"舌尖上的麦香记忆"场景。陈列南通冷蒸的传统制作工具与现代包装产品，讲述其从青黄不接时的饱腹食物到"春日限定"美食的变迁，结合海门三其村通过冷蒸提升亩产值的案例，展现传统食俗的当代活力。同时展示无锡鸿山麦饼、苏南焦麦粉等特色美食，通过制作工艺图谱与民俗传说，还原"八月半做麦饼"等传统习俗。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 第二板块：知识科普 -->
+    <section id="knowledge" class="section knowledge-section">
+        <!-- 背景图片 -->
+        <div class="section-bg-image" style="background-image: url('images/knowledge/小麦照片.png');"></div>
+        <div class="container">
+            <h2 class="section-title">知识科普</h2>
+            <p class="section-intro">深入了解江苏麦作文化的丰富内涵</p>
+            
+            <div class="knowledge-grid">
+                <div class="knowledge-card scroll-reveal fade-in" data-topic="wheat-varieties">
+                    <div class="card-bg-image" style="background-image: url('images/knowledge/宁麦13.png');"></div>
+                    <div class="card-content">
+                        <div class="card-icon">🌾</div>
+                        <h3>江苏小麦品种</h3>
+                        <p>了解江苏地区丰富的小麦品种资源，包括宁麦系列、扬麦系列等知名品种的培育历程和特点。</p>
+                        <a href="detail-wheat-varieties.html" class="card-btn">了解更多</a>
+                    </div>
+                </div>
+                
+                <div class="knowledge-card scroll-reveal fade-in" data-topic="datong-site">
+                    <div class="card-bg-image" style="background-image: url('images/exhibition/第一展区 盐城大同铺遗址.png');"></div>
+                    <div class="card-content">
+                        <div class="card-icon">🏛️</div>
+                        <h3>盐城大同遗址</h3>
+                        <p>探索盐城大同铺遗址的麦作遗存，了解西周至东周时期麦类传入江苏的早期证据。</p>
+                        <a href="detail-datong-site.html" class="card-btn">了解更多</a>
+                    </div>
+                </div>
+                
+                <div class="knowledge-card scroll-reveal fade-in" data-topic="jinshanbao">
+                    <div class="card-bg-image" style="background-image: url('images/knowledge/金善宝与小麦.jpg');"></div>
+                    <div class="card-content">
+                        <div class="card-icon">👨‍🔬</div>
+                        <h3>金善宝与小麦</h3>
+                        <p>了解著名农学家金善宝在小麦育种领域的卓越贡献和学术成就。</p>
+                        <a href="detail-jinshanbao.html" class="card-btn">了解更多</a>
+                    </div>
+                </div>
+                
+                <div class="knowledge-card scroll-reveal fade-in" data-topic="noodles">
+                    <div class="card-bg-image" style="background-image: url('images/knowledge/江苏面食.jpg');"></div>
+                    <div class="card-content">
+                        <div class="card-icon">🍜</div>
+                        <h3>江苏面食</h3>
+                        <p>探索江苏丰富的面食文化，从传统制作工艺到现代创新美食。</p>
+                        <a href="detail-noodles.html" class="card-btn">了解更多</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 知识详情弹窗 -->
+    <div id="detailModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeDetail()">&times;</span>
+            <div id="detailContent"></div>
+        </div>
+    </div>
+
+    <!-- 第三板块：展览预约 -->
+    <section id="booking" class="section booking-section">
+        <!-- 背景图片 -->
+        <div class="section-bg-image" style="background-image: url('images/exhibition/收割小麦.png');"></div>
+        <div class="container">
+            <h2 class="section-title">展览预约</h2>
+            <p class="section-intro">预约参观，体验江苏麦作文化的千年传承</p>
+            
+            <div class="booking-form-container">
+                <form class="booking-form" id="bookingForm">
+                    <div class="form-group">
+                        <label for="name">姓名</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="phone">联系电话</label>
+                        <input type="tel" id="phone" name="phone" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="date">预约日期</label>
+                        <input type="date" id="date" name="date" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="time">预约时间</label>
+                        <select id="time" name="time" required>
+                            <option value="">请选择时间</option>
+                            <option value="09:00-11:00">09:00-11:00</option>
+                            <option value="11:00-13:00">11:00-13:00</option>
+                            <option value="13:00-15:00">13:00-15:00</option>
+                            <option value="15:00-17:00">15:00-17:00</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="visitors">参观人数</label>
+                        <input type="number" id="visitors" name="visitors" min="1" max="50" required>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary btn-large">提交预约</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- 第四板块：文创商城 -->
+    <section id="shop" class="section shop-section">
+        <div class="container">
+            <h2 class="section-title">文创商城</h2>
+            <p class="section-intro">精选麦作文化主题文创产品，将千年传承带回家</p>
+            
+            <div class="shop-grid">
+                <div class="shop-item scroll-reveal fade-in">
+                    <div class="item-image">
+                        <img src="images/detail/0df46aca1d14c5b0c8de46fcf9ef0bec.jpg" alt="小麦主题抱枕" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="image-placeholder" style="display:none;">
+                            <span>产品图</span>
+                        </div>
+                        <div class="item-badge">新品</div>
+                    </div>
+                    <div class="item-info">
+                        <h3>小麦主题抱枕</h3>
+                        <p class="item-desc">舒适柔软的小麦主题抱枕，为生活增添温暖</p>
+                        <p class="item-price">¥15</p>
+                        <button class="btn btn-shop">立即购买</button>
+                    </div>
+                </div>
+                
+                <div class="shop-item scroll-reveal fade-in">
+                    <div class="item-image">
+                        <img src="images/detail/50d2aaddce77bffd2bf41682410d54d7.jpg" alt="小麦帆布包" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="image-placeholder" style="display:none;">
+                            <span>产品图</span>
+                        </div>
+                        <div class="item-badge">新品</div>
+                    </div>
+                    <div class="item-info">
+                        <h3>小麦帆布包</h3>
+                        <p class="item-desc">时尚实用的小麦主题帆布包，环保又美观</p>
+                        <p class="item-price">¥15</p>
+                        <button class="btn btn-shop">立即购买</button>
+                    </div>
+                </div>
+                
+                <div class="shop-item scroll-reveal fade-in">
+                    <div class="item-image">
+                        <img src="images/detail/5c7ba6acf419464222b4ea6ecf152af3.jpg" alt="麦穗书签" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="image-placeholder" style="display:none;">
+                            <span>产品图</span>
+                        </div>
+                        <div class="item-badge">新品</div>
+                    </div>
+                    <div class="item-info">
+                        <h3>麦穗书签</h3>
+                        <p class="item-desc">精致麦穗造型金属书签，寓意丰收与希望</p>
+                        <p class="item-price">¥12</p>
+                        <button class="btn btn-shop">立即购买</button>
+                    </div>
+                </div>
+                
+                <div class="shop-item scroll-reveal fade-in">
+                    <div class="item-image">
+                        <img src="images/detail/bfdbf7598dc825d7d821f2802672ded4.jpg" alt="小麦主题钥匙扣" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="image-placeholder" style="display:none;">
+                            <span>产品图</span>
+                        </div>
+                        <div class="item-badge">新品</div>
+                    </div>
+                    <div class="item-info">
+                        <h3>小麦主题钥匙扣</h3>
+                        <p class="item-desc">可爱的小麦造型钥匙扣，实用又美观</p>
+                        <p class="item-price">¥15</p>
+                        <button class="btn btn-shop">立即购买</button>
+                    </div>
+                </div>
+                
+                <div class="shop-item scroll-reveal fade-in">
+                    <div class="item-image">
+                        <img src="images/detail/ca94c1d614af6a3bd4a7a0c1903d45a3.jpg" alt="小麦主题冰箱贴" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="image-placeholder" style="display:none;">
+                            <span>产品图</span>
+                        </div>
+                        <div class="item-badge">新品</div>
+                    </div>
+                    <div class="item-info">
+                        <h3>小麦主题冰箱贴</h3>
+                        <p class="item-desc">精美的小麦主题冰箱贴，装饰您的厨房空间</p>
+                        <p class="item-price">¥15</p>
+                        <button class="btn btn-shop">立即购买</button>
+                    </div>
+                </div>
+                
+                <div class="shop-item scroll-reveal fade-in">
+                    <div class="item-image">
+                        <img src="images/detail/db6b6bd66222fcc0b2970be485d62d1f.jpg" alt="麦田守望笔记本" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="image-placeholder" style="display:none;">
+                            <span>产品图</span>
+                        </div>
+                        <div class="item-badge">新品</div>
+                    </div>
+                    <div class="item-info">
+                        <h3>麦田守望笔记本</h3>
+                        <p class="item-desc">精美的麦田主题笔记本，记录生活的美好</p>
+                        <p class="item-price">¥15</p>
+                        <button class="btn btn-shop">立即购买</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 麦脉千年：江苏麦作文化的传承与新生 展览</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
